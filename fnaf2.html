@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FNAF 2 Style Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #000; color: #fff; }
+        #office { background: #333; width: 100%; height: 100vh; position: relative; }
+        #camera, #hallucination { display: none; position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <div id="office">
+        <h1>Welcome to FNAF 2</h1>
+        <button id="cameraButton">Check Cameras</button>
+        <button id="lightsButton">Turn On Lights</button>
+        <div id="camera">CCTV Feed: All Quiet...</div>
+        <div id="hallucination">Hallucination Alert!</div>
+    </div>
+
+    <script>
+        let animatronicAI = { active: false, sound: () => alert('Animatronic is near!') };
+
+        function checkCameras() {
+            document.getElementById('camera').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('camera').style.display = 'none';
+                animatronicAI.active && animatronicAI.sound();
+            }, 3000);
+        }
+
+        setInterval(() => {
+            animatronicAI.active = Math.random() < 0.5; // Random AI activation
+        }, 5000);
+
+        document.getElementById('cameraButton').addEventListener('click', checkCameras);
+        document.getElementById('lightsButton').addEventListener('click', function() {
+            if (animatronicAI.active) {
+                document.getElementById('hallucination').style.display = 'block';
+                setTimeout(() => { document.getElementById('hallucination').style.display = 'none'; }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
