@@ -3,56 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Collection</title>
+    <title>Sleepy YT</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }  
-        #loading { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            background-color: #000; 
-            color: #fff; 
-            font-size: 24px; 
-            z-index: 9999;
-        }  
-        #main { display: none; padding: 20px; }  
-        #search-bar { margin-bottom: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
-        .game-tile { border: 1px solid #ccc; padding: 10px; text-align: center; transition: transform 0.3s; }
-        .game-tile:hover { transform: scale(1.05); }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('path_to_starry_background.jpg');
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.2);
+            border-top: 8px solid #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .search-bar {
+            margin: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .game-tile {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .game-tile:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
     </style>
 </head>
 <body>
-    <div id="loading">Loading... Please wait.</div>
-    <div id="main">
-        <input type="text" id="search-bar" placeholder="Search games...">
-        <div class="grid" id="game-tiles">
-            <div class="game-tile"><h3>Game 1</h3></div>
-            <div class="game-tile"><h3>Game 2</h3></div>
-            <div class="game-tile"><h3>Game 3</h3></div>
-            <div class="game-tile"><h3>Game 4</h3></div>
-        </div>
-    </div>
+    <div class="loading"><div class="spinner"></div></div>
+    <input type="text" class="search-bar" placeholder="Search games...">
+    <div class="game-tile" onclick="location.href='flappy-bird.html'">Flappy Bird</div>
+    <div class="game-tile" onclick="location.href='fnaf1.html'">FNAF 1</div>
+    <div class="game-tile" onclick="location.href='fnaf2.html'">FNAF 2</div>
+    <div class="game-tile" onclick="location.href='fnaf3.html'">FNAF 3</div>
+    <div class="game-tile" onclick="location.href='fnaf4.html'">FNAF 4</div>
+    <div class="game-tile" onclick="location.href='fnf.html'">FNF</div>
+    <div class="game-tile" onclick="location.href='fnf-qt-mod.html'">FNF QT Mod</div>
     <script>
         window.onload = function() {
-            setTimeout(function() { 
-                document.getElementById('loading').style.display = 'none'; 
-                document.getElementById('main').style.display = 'block'; 
-            }, 5000);
+            document.querySelector('.loading').style.display = 'none';
         };
-        document.getElementById('search-bar').addEventListener('keyup', function(event) {
-            const filter = event.target.value.toLowerCase();
-            const tiles = document.querySelectorAll('.game-tile');
-            tiles.forEach(tile => {
-                const text = tile.textContent.toLowerCase();
-                tile.style.display = text.includes(filter) ? '' : 'none';
-            });
-        });
     </script>
 </body>
 </html>
